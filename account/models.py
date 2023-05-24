@@ -7,10 +7,41 @@ from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
+class CustomUserManager(UserManager):
+    def _create_user(self, username, email, password, **extra_fields):
+        if not username:
+            raise ValueError("The given username must be set")
+
+        if not email:
+            raise ValueError("You have not provided a valid e-mail address")
+
+        email = self.normalize_email(email)
+        user = self.model(email=email, name=username , username=username, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+
+        return user
+
+    def create_user(self, username=None, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(username, email, password, **extra_fields)
+
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        email = "admin@admin.com"
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
+
+        return self._create_user(username, email, password, **extra_fields)
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_name = models.CharField(_('user name'), max_length=50 , unique=True)
+    username = models.CharField(_('user name'), max_length=50 , unique=True)
     email = models.EmailField(unique=True)
     name = models.CharField(_('name'), max_length=255, blank=True, default='')
     avatar = models.ImageField(_('avatar'), upload_to='avatars', blank=True, null=True)
@@ -27,6 +58,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(default=timezone.now, verbose_name=_('time of joining'))
     last_login = models.DateTimeField(blank=True, null=True, verbose_name=_('last login '))
 
-    USERNAME_FIELD = 'user_name'
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []
