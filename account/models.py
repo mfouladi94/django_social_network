@@ -7,6 +7,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
+from django_social_network import settings
+
+
 class CustomUserManager(UserManager):
     def _create_user(self, username, email, password, **extra_fields):
         if not username:
@@ -63,3 +66,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    def get_avatar(self):
+        if self.avatar:
+            # for test purposes
+            return settings.WEBSITE_URL + self.avatar.url
+        else:
+            return 'https://picsum.photos/200/200'

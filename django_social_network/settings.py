@@ -29,6 +29,8 @@ DEBUG = env("DEBUG", default=1)
 
 ALLOWED_HOSTS = []
 
+# for test purposes
+WEBSITE_URL = 'http://127.0.0.1:8000'
 
 AUTH_USER_MODEL = "account.User"
 
@@ -52,7 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'account.apps.AccountConfig'
+    'account.apps.AccountConfig',
+    'post.apps.PostConfig'
 ]
 
 MIDDLEWARE = [
@@ -135,9 +138,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
