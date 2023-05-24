@@ -2,6 +2,7 @@ from django.http import JsonResponse
 
 '''
 code : 100 success
+code : 102 success with message and  data
        103 success with redirect
     
        200 success with data 
@@ -15,7 +16,7 @@ response_struct = {
     'code': 100,
     'message': '',
     'errors': '',
-    'next': "link",
+    'next': "",
     'data': [],
 }
 
@@ -23,6 +24,13 @@ response_struct = {
 def response_100_json_success_with_message(message):
     response_struct['message'] = message
     response_struct['code'] = 100
+    return JsonResponse(response_struct, status=200)
+
+
+def response_102_json_success_with_message_data_field(message , data):
+    response_struct['message'] = message
+    response_struct['code'] = 102
+    response_struct['data'] = data
     return JsonResponse(response_struct, status=200)
 
 
