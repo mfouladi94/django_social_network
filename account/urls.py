@@ -12,6 +12,8 @@ urlpatterns = [
     path('friends/suggested/', api.my_friendship_suggestions, name='my_friendship_suggestions'),
     path('friends/<uuid:pk>/', api.friends, name='friends'),
     path('friends/<uuid:pk>/request/', api.send_friendship_request, name='send_friendship_request'),
+    path('friends/request/', api.my_friendship_requests, name='my_friendship_requests'),
+    path('friends/request/byme/', api.requested_friendships, name='requested_friendships'),
     path('friends/<uuid:pk>/<str:status>/', api.handle_request, name='handle_request'),
 
 ]

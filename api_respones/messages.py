@@ -6,3 +6,5 @@ ALREADYLIKED = "از قبل لایک شده بود"
 ERRORLENGTHCOMMENT = "طول کامنت مجاز نیست"
 POSTDELETED = "پست حذف شد"
 POSTREPORTED = "گزارش انجام شد"
+FRIENDSHIPREQUESTCREATED = 'درخواست دوستی ارسال شد'
+FRIENDSHIPREQUESTALREADYEXIST = "درخواست دوستی قبلا ارسال شده است"
