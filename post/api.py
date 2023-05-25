@@ -10,7 +10,7 @@ from api_respones import messages
 from django_social_network import settings
 from .froms import PostForm, AttachmentForm
 
-from .models import Post
+from .models import Post, Like
 from .serializers import *
 
 
@@ -84,13 +84,12 @@ def post_detail(request, pk):
 
     post = Post.objects.filter(Q(created_by_id__in=list(user_ids)) | Q(is_private=False)).get(pk=pk)
 
-    return response_102_json_success_with_message_data_field(messages.SUCCESS , data={'post': PostDetailSerializer(post).data})
-
+    return response_102_json_success_with_message_data_field(messages.SUCCESS,
+                                                             data={'post': PostDetailSerializer(post).data})
 
 
 @api_view(['GET'])
-def post_list_profile(request, id , page):
-
+def post_list_profile(request, id, page):
     user = User.objects.get(pk=id)
     posts = Post.objects.filter(created_by_id=id)
 
@@ -120,8 +119,8 @@ def post_list_profile(request, id , page):
             "totalCount": p.count,
             "currentPage": page,
             "pages": p.num_pages,
-            'posts' : posts_serializer.data,
-        } ,
+            'posts': posts_serializer.data,
+        },
         'user': user_serializer.data,
         'can_send_friendship_request': can_send_friendship_request
     }
@@ -130,12 +129,38 @@ def post_list_profile(request, id , page):
 
 @api_view(['POST'])
 def post_like(request, pk):
-    pass
+    post = Post.objects.get(pk=pk)
+
+    if not post.likes.filter(created_by=request.user):
+        like = Like.objects.create(created_by=request.user)
+
+        post = Post.objects.get(pk=pk)
+        post.likes_count = post.likes_count + 1
+        post.likes.add(like)
+        post.save()
+
+        return response_100_json_success_with_message(messages.SUCCESSLIKE)
+    else:
+        return response_100_json_success_with_message(messages.ALREADYLIKED)
 
 
 @api_view(['POST'])
 def post_create_comment(request, pk):
-    pass
+    body = request.data.get('body')
+
+    if body is None or 1000 < len(body) < 25 :
+        return response_400_json_error_with_message(messages.ERRORLENGTHCOMMENT)
+
+    comment = Comment.objects.create(body=request.data.get('body'), created_by=request.user)
+
+    post = Post.objects.get(pk=pk)
+    post.comments.add(comment)
+    post.comments_count = post.comments_count + 1
+    post.save()
+
+    serializer = CommentSerializer(comment)
+
+    return response_102_json_success_with_message_data_field(messages.SUCCESS, serializer.data)
 
 
 @api_view(['DELETE'])
