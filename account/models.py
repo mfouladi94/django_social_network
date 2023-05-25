@@ -5,7 +5,6 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-
 # Create your models here.
 from django_social_network import settings
 
@@ -19,7 +18,7 @@ class CustomUserManager(UserManager):
             raise ValueError("You have not provided a valid e-mail address")
 
         email = self.normalize_email(email)
-        user = self.model(email=email, name=username , username=username, **extra_fields)
+        user = self.model(email=email, name=username, username=username, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
 
@@ -44,7 +43,7 @@ class CustomUserManager(UserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    username = models.CharField(_('user name'), max_length=50 , unique=True)
+    username = models.CharField(_('user name'), max_length=50, unique=True)
     email = models.EmailField(unique=True)
     name = models.CharField(_('name'), max_length=255, blank=True, default='')
     avatar = models.ImageField(_('avatar'), upload_to='avatars', blank=True, null=True)
@@ -73,3 +72,24 @@ class User(AbstractBaseUser, PermissionsMixin):
             return settings.WEBSITE_URL + self.avatar.url
         else:
             return 'https://picsum.photos/200/200'
+
+    def __str__(self):
+        return f"id : {self.id} username : {self.username} "
+
+
+class FriendshipRequest(models.Model):
+    SENT = 'sent'
+    ACCEPTED = 'accepted'
+    REJECTED = 'rejected'
+
+    STATUS_CHOICES = (
+        (SENT, 'Sent'),
+        (ACCEPTED, 'Accepted'),
+        (REJECTED, 'Rejected'),
+    )
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_for = models.ForeignKey(User, related_name='received_friendshiprequests', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, related_name='created_friendshiprequests', on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=SENT)

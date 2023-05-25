@@ -12,7 +12,7 @@ urlpatterns = [
     path('<uuid:pk>/comment/', api.post_create_comment, name='post_create_comment'),
     path('<uuid:pk>/delete/', api.post_delete, name='post_delete'),
     path('<uuid:pk>/report/', api.post_report, name='post_report'),
-    path('profile/<uuid:id>/', api.post_list_profile, name='post_list_profile'),
+    path('profile/<uuid:id>/<int:page>/', api.post_list_profile, name='post_list_profile'),
 
 
 
