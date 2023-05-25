@@ -4,3 +4,5 @@ ErrorCreatePostNoAttachment = "برای ساخت پست حتما یک تصویر
 SUCCESSLIKE = "با موفقیت لایک شد"
 ALREADYLIKED = "از قبل لایک شده بود"
 ERRORLENGTHCOMMENT = "طول کامنت مجاز نیست"
+POSTDELETED = "پست حذف شد"
+POSTREPORTED = "گزارش انجام شد"

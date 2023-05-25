@@ -148,7 +148,7 @@ def post_like(request, pk):
 def post_create_comment(request, pk):
     body = request.data.get('body')
 
-    if body is None or 1000 < len(body) < 25 :
+    if body is None or 1000 < len(body) < 25:
         return response_400_json_error_with_message(messages.ERRORLENGTHCOMMENT)
 
     comment = Comment.objects.create(body=request.data.get('body'), created_by=request.user)
@@ -163,11 +163,58 @@ def post_create_comment(request, pk):
     return response_102_json_success_with_message_data_field(messages.SUCCESS, serializer.data)
 
 
+@api_view(['POST'])
+def post_create_comment_reply(request, pk):
+    body = request.data.get('body')
+
+    if body is None or 1000 < len(body) < 25:
+        return response_400_json_error_with_message(messages.ERRORLENGTHCOMMENT)
+
+    reply = Comment.objects.create(body=request.data.get('body'), created_by=request.user)
+
+    comment = Comment.objects.get(pk=pk)
+    comment.replies.add(reply)
+    comment.replies_count = comment.replies_count + 1
+    comment.save()
+
+    serializer = CommentSerializer(reply)
+
+    return response_102_json_success_with_message_data_field(messages.SUCCESS, serializer.data)
+
+
+@api_view(['GET'])
+def post_get_comment_reply(request, pk, page=1):
+    comment = Comment.objects.get(pk=pk)
+    replies = comment.replies.all()
+
+    # pagination
+    p = Paginator(replies, settings.DEFAULT_PER_PAGE)
+    replies = p.page(page).object_list
+
+    serializer = CommentSerializer(replies, many=True)
+
+    response = {
+        "totalCount": p.count,
+        "currentPage": page,
+        "pages": p.num_pages,
+        "data": serializer.data
+    }
+
+    return response_102_json_success_with_message_data_field(messages.SUCCESS, response)
+
+
 @api_view(['DELETE'])
 def post_delete(request, pk):
-    pass
+    post = Post.objects.filter(created_by=request.user).get(pk=pk)
+    post.delete()
+
+    return response_100_json_success_with_message(messages.POSTDELETED)
 
 
 @api_view(['POST'])
 def post_report(request, pk):
-    pass
+    post = Post.objects.get(pk=pk)
+    post.reported_by_users.add(request.user)
+    post.save()
+
+    return response_100_json_success_with_message(messages.POSTREPORTED)

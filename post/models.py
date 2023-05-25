@@ -1,7 +1,7 @@
 import uuid
 
 from django.db import models
-
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 from django.utils.timesince import timesince
 
@@ -19,6 +19,10 @@ class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     body = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
+
+    replies = models.ManyToManyField('self', verbose_name=_('replies'), )
+    replies_count = models.IntegerField(default=0, verbose_name=_('Number of replies'))
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
