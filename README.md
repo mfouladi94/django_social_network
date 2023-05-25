@@ -1,4 +1,4 @@
-# شبکه اجتماعی با python + django + postgresql 
+# شبکه اجتماعی با python + django + postgresql + Dokcer 
 
 
 -------------------
