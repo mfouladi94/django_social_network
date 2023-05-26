@@ -1,0 +1,612 @@
+{
+	"info": {
+		"_postman_id": "0003838d-7ef7-495b-b855-8b1a6c2fdb3f",
+		"name": "social network django",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "adminadmin",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/account/token/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "adminadmin",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/account/token/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "posts",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "posts Detail",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "profile",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "create post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{social_netwok_django_auth_header}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/post/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"post",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like a post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{social_netwok_django_auth_header}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/post/f65c8ec4-ab6e-4eb9-9b37-ab636f672daa/like/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"post",
+						"f65c8ec4-ab6e-4eb9-9b37-ab636f672daa",
+						"like",
+						""
+					],
+					"query": [
+						{
+							"key": "au",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTY1MDQ4LCJpYXQiOjE2ODQ5NjE0NDgsImp0aSI6IjViZWFhNDZmODYxODQ3OGI5OGQzYTk2MDE1YzE0ZDA0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.zwzEj202YwZ5aEeD4WHEJf0XVu9cmNU2-geoDeVr0lg",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "comment a post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTk1NzMwLCJpYXQiOjE2ODQ5OTIxMzAsImp0aSI6IjE0Mzk5YjViMTlkZTQyZDhhODdjNjYwMzYyNmVkMDQ0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.7jUnIaZ5hVBk67vrxWQ1PMR8vja6p_6JHG0MJYs38CI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "this is fucking comment",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/post/f65c8ec4-ab6e-4eb9-9b37-ab636f672daa/comment/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"post",
+						"f65c8ec4-ab6e-4eb9-9b37-ab636f672daa",
+						"comment",
+						""
+					],
+					"query": [
+						{
+							"key": "au",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTY1MDQ4LCJpYXQiOjE2ODQ5NjE0NDgsImp0aSI6IjViZWFhNDZmODYxODQ3OGI5OGQzYTk2MDE1YzE0ZDA0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.zwzEj202YwZ5aEeD4WHEJf0XVu9cmNU2-geoDeVr0lgBearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTk1NzMwLCJpYXQiOjE2ODQ5OTIxMzAsImp0aSI6IjE0Mzk5YjViMTlkZTQyZDhhODdjNjYwMzYyNmVkMDQ0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.7jUnIaZ5hVBk67vrxWQ1PMR8vja6p_6JHG0MJYs38CI",
+							"disabled": true
+						},
+						{
+							"key": "body",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get comment replies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTk1NzMwLCJpYXQiOjE2ODQ5OTIxMzAsImp0aSI6IjE0Mzk5YjViMTlkZTQyZDhhODdjNjYwMzYyNmVkMDQ0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.7jUnIaZ5hVBk67vrxWQ1PMR8vja6p_6JHG0MJYs38CI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "this is fucking comment",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/post/f65c8ec4-ab6e-4eb9-9b37-ab636f672daa/comment/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"post",
+						"f65c8ec4-ab6e-4eb9-9b37-ab636f672daa",
+						"comment",
+						""
+					],
+					"query": [
+						{
+							"key": "au",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTY1MDQ4LCJpYXQiOjE2ODQ5NjE0NDgsImp0aSI6IjViZWFhNDZmODYxODQ3OGI5OGQzYTk2MDE1YzE0ZDA0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.zwzEj202YwZ5aEeD4WHEJf0XVu9cmNU2-geoDeVr0lgBearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTk1NzMwLCJpYXQiOjE2ODQ5OTIxMzAsImp0aSI6IjE0Mzk5YjViMTlkZTQyZDhhODdjNjYwMzYyNmVkMDQ0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.7jUnIaZ5hVBk67vrxWQ1PMR8vja6p_6JHG0MJYs38CI",
+							"disabled": true
+						},
+						{
+							"key": "body",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reply a comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MDIzNTg3LCJpYXQiOjE2ODUwMTk5ODcsImp0aSI6IjVmNTAyYzJlMDMyMzQ5MmE4ODA1NWI0NzY1NzMyYWU0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.hhcV0Vz0xpQ8P8GI-RJWIf9_y1BVEyY6046ms3o7frA",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "this is fucking reply",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/post/d466862a-ae0d-4756-bf2e-9deb922c2e4c/comment/reply/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"post",
+						"d466862a-ae0d-4756-bf2e-9deb922c2e4c",
+						"comment",
+						"reply",
+						""
+					],
+					"query": [
+						{
+							"key": "au",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTY1MDQ4LCJpYXQiOjE2ODQ5NjE0NDgsImp0aSI6IjViZWFhNDZmODYxODQ3OGI5OGQzYTk2MDE1YzE0ZDA0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.zwzEj202YwZ5aEeD4WHEJf0XVu9cmNU2-geoDeVr0lgBearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTk1NzMwLCJpYXQiOjE2ODQ5OTIxMzAsImp0aSI6IjE0Mzk5YjViMTlkZTQyZDhhODdjNjYwMzYyNmVkMDQ0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.7jUnIaZ5hVBk67vrxWQ1PMR8vja6p_6JHG0MJYs38CI",
+							"disabled": true
+						},
+						{
+							"key": "body",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MDExNTcwLCJpYXQiOjE2ODUwMDc5NzAsImp0aSI6IjU1NmU3MWI4MTMzNDRmZWRiMWZlZDg3ZjU3ZWI0ZDdkIiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.KdvwDREydnOM91fslF0nUXaClc0M_0vhp8goabVEIgI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "query",
+							"value": "dragon",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/search/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"search",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send friend request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MDIzNTg3LCJpYXQiOjE2ODUwMTk5ODcsImp0aSI6IjVmNTAyYzJlMDMyMzQ5MmE4ODA1NWI0NzY1NzMyYWU0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.hhcV0Vz0xpQ8P8GI-RJWIf9_y1BVEyY6046ms3o7frA",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "this is fucking reply",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/post/d466862a-ae0d-4756-bf2e-9deb922c2e4c/comment/reply/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"post",
+						"d466862a-ae0d-4756-bf2e-9deb922c2e4c",
+						"comment",
+						"reply",
+						""
+					],
+					"query": [
+						{
+							"key": "au",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTY1MDQ4LCJpYXQiOjE2ODQ5NjE0NDgsImp0aSI6IjViZWFhNDZmODYxODQ3OGI5OGQzYTk2MDE1YzE0ZDA0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.zwzEj202YwZ5aEeD4WHEJf0XVu9cmNU2-geoDeVr0lgBearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTk1NzMwLCJpYXQiOjE2ODQ5OTIxMzAsImp0aSI6IjE0Mzk5YjViMTlkZTQyZDhhODdjNjYwMzYyNmVkMDQ0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.7jUnIaZ5hVBk67vrxWQ1PMR8vja6p_6JHG0MJYs38CI",
+							"disabled": true
+						},
+						{
+							"key": "body",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Handle friend request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MDIzNTg3LCJpYXQiOjE2ODUwMTk5ODcsImp0aSI6IjVmNTAyYzJlMDMyMzQ5MmE4ODA1NWI0NzY1NzMyYWU0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.hhcV0Vz0xpQ8P8GI-RJWIf9_y1BVEyY6046ms3o7frA",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "this is fucking reply",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/account/friends/8b59d571-16db-4f18-9582-58ffdbd1a5f1/request/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"friends",
+						"8b59d571-16db-4f18-9582-58ffdbd1a5f1",
+						"request",
+						""
+					],
+					"query": [
+						{
+							"key": "au",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTY1MDQ4LCJpYXQiOjE2ODQ5NjE0NDgsImp0aSI6IjViZWFhNDZmODYxODQ3OGI5OGQzYTk2MDE1YzE0ZDA0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.zwzEj202YwZ5aEeD4WHEJf0XVu9cmNU2-geoDeVr0lgBearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTk1NzMwLCJpYXQiOjE2ODQ5OTIxMzAsImp0aSI6IjE0Mzk5YjViMTlkZTQyZDhhODdjNjYwMzYyNmVkMDQ0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.7jUnIaZ5hVBk67vrxWQ1PMR8vja6p_6JHG0MJYs38CI",
+							"disabled": true
+						},
+						{
+							"key": "body",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all friend request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MDI3NDA3LCJpYXQiOjE2ODUwMjM4MDcsImp0aSI6ImZjOGIxNDYyODMwNjQwMmFhZTBjNTc4ZDJjZDk0YzVhIiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.aPS7ss_7_JKsXU6rHgUqzu8RFNoRnbi76kf_t3KDU5M",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "this is fucking reply",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/account/friends/request/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"friends",
+						"request",
+						""
+					],
+					"query": [
+						{
+							"key": "au",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTY1MDQ4LCJpYXQiOjE2ODQ5NjE0NDgsImp0aSI6IjViZWFhNDZmODYxODQ3OGI5OGQzYTk2MDE1YzE0ZDA0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.zwzEj202YwZ5aEeD4WHEJf0XVu9cmNU2-geoDeVr0lgBearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTk1NzMwLCJpYXQiOjE2ODQ5OTIxMzAsImp0aSI6IjE0Mzk5YjViMTlkZTQyZDhhODdjNjYwMzYyNmVkMDQ0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.7jUnIaZ5hVBk67vrxWQ1PMR8vja6p_6JHG0MJYs38CI",
+							"disabled": true
+						},
+						{
+							"key": "body",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all friend request by me",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MDI3NDA3LCJpYXQiOjE2ODUwMjM4MDcsImp0aSI6ImZjOGIxNDYyODMwNjQwMmFhZTBjNTc4ZDJjZDk0YzVhIiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.aPS7ss_7_JKsXU6rHgUqzu8RFNoRnbi76kf_t3KDU5M",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "this is fucking reply",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/account/friends/request/byme/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"friends",
+						"request",
+						"byme",
+						""
+					],
+					"query": [
+						{
+							"key": "au",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTY1MDQ4LCJpYXQiOjE2ODQ5NjE0NDgsImp0aSI6IjViZWFhNDZmODYxODQ3OGI5OGQzYTk2MDE1YzE0ZDA0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.zwzEj202YwZ5aEeD4WHEJf0XVu9cmNU2-geoDeVr0lgBearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTk1NzMwLCJpYXQiOjE2ODQ5OTIxMzAsImp0aSI6IjE0Mzk5YjViMTlkZTQyZDhhODdjNjYwMzYyNmVkMDQ0IiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.7jUnIaZ5hVBk67vrxWQ1PMR8vja6p_6JHG0MJYs38CI",
+							"disabled": true
+						},
+						{
+							"key": "body",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "social_netwok_django_auth_header",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0OTYxMzMyLCJpYXQiOjE2ODQ5NjEwMzIsImp0aSI6ImZmNzMxYmRjOTFjMDQzYWNhYjBkZWI4YWY2NTkyMmEwIiwidXNlcl9pZCI6ImQ4NGRlNGY0LTE5MjMtNDBiMi1iOTMwLTcwMDM4ZDBmMzNjNiJ9.RyoGud2Ngx1t5k4DS6Tjqs5SonMrrt24hwDgveDdxqo"
+		}
+	]
+}

@@ -4,8 +4,6 @@ volumes:
   social_network_local_postgres_data: {}
 
 
-
-
 services:
   postgres:
     image: postgres:latest
@@ -16,3 +14,12 @@ services:
       - social_network_local_postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
+
+  web:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
