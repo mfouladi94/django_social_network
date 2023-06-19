@@ -73,6 +73,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         else:
             return 'https://picsum.photos/200/200'
 
+    def get_id_str(self):
+        return str(self.id)
+    
+    
     def __str__(self):
         return f"id : {self.id} username : {self.username} "
 

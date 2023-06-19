@@ -1,5 +1,6 @@
-from django.http import JsonResponse
-
+from django.http import JsonResponse , HttpResponse
+from rest_framework.response import Response
+from bson.json_util import dumps
 '''
 code : 100 success
 code : 102 success with message and  data
@@ -32,8 +33,21 @@ def response_102_json_success_with_message_data_field(message , data):
     body = response_struct.copy()
     body['message'] = message
     body['code'] = 102
-    body['data'] = data
+    body['data'] = list()
+    body['data'].append(data) 
     return JsonResponse(body, status=200)
+
+def response_102_Response_with_json_body_success_with_message_data_field(message , data):
+    body = response_struct.copy()
+    body['message'] = message
+    body['code'] = 102
+    body['data'] = list()
+    body['data'].append(data) 
+    if isinstance(data, list):
+        body['data'] = data
+    
+    return HttpResponse(dumps(body) ,content_type='application/json',status=200)
+
 
 
 def response_103_json_success_with_message_redirect(message, link):

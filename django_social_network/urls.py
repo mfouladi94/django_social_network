@@ -22,5 +22,5 @@ urlpatterns = [
     path('api/v1/account/', include('account.urls')),
     path('api/v1/search/', include('search.urls')),
     path('api/v1/post/', include('post.urls')),
-    # path('api/v2/post/' , include('post_nosql.urls'))
+    path('api/v2/post/', include('post_nosql.urls'))
 ]

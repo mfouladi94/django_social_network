@@ -36,7 +36,7 @@ WEBSITE_URL = 'http://127.0.0.1:8000'
 AUTH_USER_MODEL = "account.User"
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=180),
 }
 
@@ -122,6 +122,10 @@ DATABASES = {
         'PORT': env("POSTGRES_PORT"),
 
     }
+}
+
+MONGODB = {
+    'connectionString': env("MONGO_CONNECTION")
 }
 
 # Password validation

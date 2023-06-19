@@ -84,7 +84,6 @@ def requested_friendships(request):
 
 @api_view(['POST'])
 def handle_request(request, pk, status):
-    user = request.user
 
     message = ""
 
@@ -93,12 +92,16 @@ def handle_request(request, pk, status):
     friendship_request.save()
 
     if friendship_request.status == FriendshipRequest.ACCEPTED:
-        user.friends.add(request.user)
-        user.friends_count = user.friends_count + 1
-        user.save()
-        request_user = request.user
-        request_user.friends_count = request_user.friends_count + 1
-        request_user.save()
+        request.user.friends.add(friendship_request.created_by)
+        friendship_request.created_by.friends.add(request.user)
+        
+        request.user.friends_count += 1 
+        friendship_request.created_by.friends_count +=1 
+        
+        request.user.save()
+        friendship_request.created_by.save()
+        
+        
 
     elif friendship_request.status == FriendshipRequest.REJECTED:
         pass
