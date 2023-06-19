@@ -1,4 +1,4 @@
-# شبکه اجتماعی با python + django + postgresql + Dokcer 
+# شبکه اجتماعی با python + django + postgresql + Docker + MongoDB 
 
 
 -------------------
@@ -25,7 +25,7 @@ ___________________
  در پیاده سازی سعی شده که query ها به شکل optimize باشد .
 
 ------
-### موارد پیش رو
+### موارد پیشنهادی
 
 * استفاده از cache جهت نمایش پست های محبوب
 * استفاده از database sharding برای توزیع داده ها 
